@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AchieveSkill extends Migration
+class AddImagesToAchievesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class AchieveSkill extends Migration
      */
     public function up()
     {
-        Schema::create('achieve_skill', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('achieve_id');
-            $table->unsignedBigInteger('skill_id');
-
+        Schema::table('achieves', function (Blueprint $table) {
+            $table->string('image')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ class AchieveSkill extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('achieve_skill');
+        Schema::table('achieves', function (Blueprint $table) {
+            //
+        });
     }
 }

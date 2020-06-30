@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/basics', 'ResumeController');
+Route::post('/upload', 'UploadController');
+
 Route::group(['prefix' => 'skills'], function () {
     Route::get('', 'SkillController@index');
     Route::post('', 'SkillController@store');

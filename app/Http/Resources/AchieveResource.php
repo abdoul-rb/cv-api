@@ -19,9 +19,10 @@ class AchieveResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'url' => $this->url,
+            'git' => $this->git,
             'description' => $this->description,
             'skills' => SkillResource::collection($this->skills),
-            'technos' => $this->technos,
+            'image' => $this->image,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];

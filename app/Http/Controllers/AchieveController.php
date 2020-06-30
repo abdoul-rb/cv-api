@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Achieve\StoreAchieveFormRequest;
+use App\Http\Requests\Achieve\UpdateAchieveFormRequest;
 use App\Http\Resources\AchieveResource;
 use App\Model\Achieve;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -31,9 +32,16 @@ class AchieveController extends Controller
      */
     public function store(StoreAchieveFormRequest $request)
     {
-        Achieve::create(
-            $request->only('name', 'url', 'description', 'technos')
-        );
+
+        $achieve = new Achieve();
+        $achieve->name = $request->name;
+        $achieve->description = $request->description;
+        $achieve->url = $request->url;
+        $achieve->git = $request->git;
+        $achieve->image = $request->image;
+
+        $achieve->save();
+        $achieve->skills()->attach($request->techs);
     }
 
     /**
@@ -59,8 +67,10 @@ class AchieveController extends Controller
     public function update(UpdateAchieveFormRequest $request, Achieve $achieve)
     {
         $achieve->update(
-            $request->only('name', 'url', 'description', 'technos')
+            $request->only('name', 'url', 'description')
         );
+
+        $achieve->skills()->sync($request->techs);
     }
 
     /**

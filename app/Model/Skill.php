@@ -31,7 +31,8 @@ class Skill extends Model
         });
     }
 
-    public function achieves() {
+    public function achieves()
+    {
        return $this->belongsToMany(Achieve::class);
     }
 

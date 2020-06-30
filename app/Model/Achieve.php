@@ -12,7 +12,6 @@ class Achieve extends Model
       'slug',
       'url',
       'description',
-      'technos',
     ];
 
     public function getRouteKeyName()
@@ -33,7 +32,8 @@ class Achieve extends Model
         });
     }
 
-    public function skills() {
+    public function skills()
+    {
        return $this->belongsToMany(Skill::class);
     }
 }
