@@ -18,7 +18,7 @@ class AchieveController extends Controller
      */
     public function index()
     {
-        $achieves = Achieve::all();
+        $achieves = Achieve::all()->take(4);
 
         return AchieveResource::collection($achieves);
     }
